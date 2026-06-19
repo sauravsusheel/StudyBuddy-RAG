@@ -1,0 +1,345 @@
+# ============================================================================
+# SecurAudit RAG — Production-Grade .gitignore
+# Purpose: Exclude heavy, temporary, and sensitive data from Git tracking
+# Author: DevOps/Git Specialist
+# Last Updated: 2026-05-15
+# ============================================================================
+
+# ─────────────────────────────────────────────────────────────────────────
+# 1. PYTHON VIRTUAL ENVIRONMENTS
+# ─────────────────────────────────────────────────────────────────────────
+# Exclude all Python virtual environment directories (platform-agnostic)
+venv/
+.venv/
+env/
+.env_backup/
+ENV/
+env.bak/
+venv.bak/
+
+# Virtualenv (common naming patterns)
+myenv/
+.virtualenv/
+
+# Poetry-managed virtual environments
+.venv.lock
+poetry.lock
+
+# Pipenv
+Pipfile.lock
+.pipenv/
+
+# ─────────────────────────────────────────────────────────────────────────
+# 2. LOCAL VECTOR DATABASE & PERSISTENT STORAGE
+# ─────────────────────────────────────────────────────────────────────────
+# Exclude ChromaDB local storage (can be gigabytes)
+chroma_db/
+chroma_data/
+chromadb/
+*.db
+*.sqlite
+*.sqlite3
+
+# Faiss indices and other vector store formats
+faiss_index/
+faiss_indexes/
+milvus_data/
+weaviate_data/
+pinecone_cache/
+
+# Model cache and embeddings
+model_cache/
+embeddings_cache/
+cache/
+
+# ─────────────────────────────────────────────────────────────────────────
+# 3. LOCAL CORPUS & DATA FILES (Keep folder structure, exclude content)
+# ─────────────────────────────────────────────────────────────────────────
+# Exclude raw PDFs and documents in compliance corpus
+compliance_corpus/**/*.pdf
+compliance_corpus/**/*.docx
+compliance_corpus/**/*.doc
+compliance_corpus/**/*.xlsx
+compliance_corpus/**/*.txt
+compliance_corpus/**/*.json
+compliance_corpus/**/*.csv
+
+# But keep the directory structure (via .gitkeep)
+!compliance_corpus/.gitkeep
+!compliance_corpus/*/.gitkeep
+
+# Exclude other data directories
+data/**/*.pdf
+data/**/*.txt
+data/**/*.json
+data/**/*.csv
+data/**/*.xlsx
+data/**/*.docx
+!data/.gitkeep
+
+raw_data/
+processed_data/
+datasets/
+downloads/
+uploads/
+
+# ─────────────────────────────────────────────────────────────────────────
+# 4. ENVIRONMENT VARIABLES & SECRETS
+# ─────────────────────────────────────────────────────────────────────────
+# Exclude .env files containing API keys and sensitive credentials
+.env
+.env.local
+.env.*.local
+.env.production
+.env.development
+.env.staging
+.env.test
+
+# Example template (KEEP this, but exclude actual values)
+# .env.example should be committed with placeholder values only
+
+# AWS credentials
+.aws/
+aws_credentials
+
+# Azure credentials
+.azure/
+
+# GCP credentials
+.gcp_key.json
+gcloud/
+
+# SSH keys
+id_rsa
+id_rsa.pub
+*.pem
+*.key
+
+# API keys and tokens
+secrets.txt
+api_keys.txt
+credentials.json
+tokens/
+
+# ─────────────────────────────────────────────────────────────────────────
+# 5. PYTHON CACHES & COMPILED FILES
+# ─────────────────────────────────────────────────────────────────────────
+# Python bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions (compiled)
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+*.egg-info/
+.eggs/
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Pytest cache
+.pytest_cache/
+.cache/
+htmlcov/
+.coverage
+.coverage.*
+coverage.xml
+*.cover
+
+# Tox
+.tox/
+.hypothesis/
+
+# mypy / type checking
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.pyre/
+
+# Pylint
+.pylintrc
+.pylintrc.bak
+
+# Black formatter
+.black_cache/
+
+# IPython
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# ─────────────────────────────────────────────────────────────────────────
+# 6. IDE & EDITOR CONFIGURATION
+# ─────────────────────────────────────────────────────────────────────────
+# VS Code
+.vscode/
+*.code-workspace
+.vscode/settings.json
+.vscode/launch.json
+
+# PyCharm / IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+.vim/
+*.swp
+*.swo
+*~
+.vimrc
+
+# Emacs
+*~
+\#*\#
+.\#*
+
+# Nano
+.nano_history
+
+# Atom
+.atom/
+.atom-build.json
+
+# Visual Studio
+.vs/
+.vssettings
+
+# ─────────────────────────────────────────────────────────────────────────
+# 7. OPERATING SYSTEM GARBAGE
+# ─────────────────────────────────────────────────────────────────────────
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+*.swp
+._*
+.Spotlight-V100
+.Trashes
+.VolumeIcon.icns
+.TemporaryItems
+.fseventsd
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# Linux
+.directory
+.Xauthority
+.Xresources
+
+# ─────────────────────────────────────────────────────────────────────────
+# 8. DEPENDENCY MANAGEMENT
+# ─────────────────────────────────────────────────────────────────────────
+# pip
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Conda
+.conda/
+conda-meta/
+
+# ─────────────────────────────────────────────────────────────────────────
+# 9. BUILD & DEPLOYMENT ARTIFACTS
+# ─────────────────────────────────────────────────────────────────────────
+# Build directories
+build/
+dist/
+*.tar.gz
+*.zip
+*.rar
+
+# Docker build artifacts
+.dockerignore
+docker-compose.override.yml
+
+# Kubernetes
+helm-values.yaml
+kube-config
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+.terraform.lock.hcl
+
+# ─────────────────────────────────────────────────────────────────────────
+# 10. LOGS & TEMPORARY FILES
+# ─────────────────────────────────────────────────────────────────────────
+# Application logs
+*.log
+logs/
+*.log.*
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.bak
+*.backup
+*.orig
+
+# ─────────────────────────────────────────────────────────────────────────
+# 11. DATABASE & BACKUP FILES
+# ─────────────────────────────────────────────────────────────────────────
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+*.postgres
+*.mysql
+
+# Backup files
+*.backup
+*.bak
+*.restore
+
+# ─────────────────────────────────────────────────────────────────────────
+# 12. TEST & COVERAGE ARTIFACTS
+# ─────────────────────────────────────────────────────────────────────────
+.coverage
+.coverage.*
+htmlcov/
+.pytest_cache/
+test-results/
+coverage-report/
+
+# ─────────────────────────────────────────────────────────────────────────
+# 13. NODE.JS (if using any frontend tooling)
+# ─────────────────────────────────────────────────────────────────────────
+node_modules/
+npm-debug.log
+yarn-error.log
+package-lock.json
+yarn.lock
+
+# ─────────────────────────────────────────────────────────────────────────
+# 14. CUSTOM EXCEPTIONS (explicitly track important files)
+# ─────────────────────────────────────────────────────────────────────────
+# ALWAYS include these even if they match patterns above:
+!.gitkeep
+!.env.example
+!.env.template
+!compliance_corpus/.gitkeep
+!compliance_corpus/*/.gitkeep
+!data/.gitkeep
+!logs/.gitkeep
+!tmp/.gitkeep
+
+# ============================================================================
+# END OF PRODUCTION .gitignore FOR SECUREAUDIT RAG
+# ============================================================================
